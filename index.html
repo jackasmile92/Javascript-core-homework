@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>
+		JavaScript core
+	</title>
+	<script src="script/date.js"></script>
+	<script src="script/transferService.js" ></script>
+	<script src="script/person.js"></script>
+	<script src="script/account.js"></script>
+	
+</head>
+<body>
+Откройте консоль!<br/>
+Crome: Ctrl+Shift+I
+<script>
+	firstPerson = new Person("Jack","11/08/992");
+	firstPerson._accounts.push( transferService.register(firstPerson,"На автомобиль", 100) );
+	firstPerson._accounts.push( transferService.register(firstPerson,"На завта", 100) );
+
+	console.log(transferService.getAccounts(firstPerson));
+
+	secondPerson = new Person("Mickey", "12/07/989");
+	secondPerson._accounts.push( transferService.register(secondPerson,"На отдых", 200) );
+
+	transferService.transfer(secondPerson._accounts[0],firstPerson._accounts[0], 50);
+
+    console.log(transferService.getAccounts(secondPerson));
+</script>
+
+</body>
+</html>
