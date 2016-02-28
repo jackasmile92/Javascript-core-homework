@@ -1,5 +1,5 @@
 function Person(name, birthDate){
-	this._name = name;
-	this._birthDate = birthDate;
-	this._accounts = [];
+	this.name = name;
+	this.birthDate = birthDate;
+	this.accounts = [];
 }

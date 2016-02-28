@@ -15,18 +15,24 @@
 Откройте консоль!<br/>
 Crome: Ctrl+Shift+I
 <script>
-	firstPerson = new Person("Jack","11/08/992");
-	firstPerson._accounts.push( transferService.register(firstPerson,"На автомобиль", 100) );
-	firstPerson._accounts.push( transferService.register(firstPerson,"На завта", 100) );
-
+	var firstPerson = new Person("Jack","11/08/992");
+	var firstAccount = new Account("На автомобиль");
+	transferService.register(firstPerson,firstAccount, 100);
 	console.log(transferService.getAccounts(firstPerson));
 
-	secondPerson = new Person("Mickey", "12/07/989");
-	secondPerson._accounts.push( transferService.register(secondPerson,"На отдых", 200) );
+	var secondAccount = new Account("На мечту");
+	transferService.register(firstPerson,secondAccount, 100);
+	console.log(transferService.getAccounts(firstPerson));
 
-	transferService.transfer(secondPerson._accounts[0],firstPerson._accounts[0], 50);
+	console.log(secondAccount.person);
 
-    console.log(transferService.getAccounts(secondPerson));
+	var secondPerson = new Person("Vovan","23/13/88");	
+	var thirdAccount = new Account("На");
+	transferService.register(secondPerson, thirdAccount, 300);
+
+	transferService.transfer(firstPerson.accounts[0],secondPerson.accounts[0], 100);
+	transferService.transfer(firstPerson.accounts[1],firstPerson.accounts[0], 50);
+
 </script>
 
 </body>

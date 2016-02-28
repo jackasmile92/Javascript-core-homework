@@ -1,47 +1,48 @@
 
 
 var transferService = (function () {
-	var newAccount;
-
-	function registerNewAccount(person, accountName, balance) {
+	function registerNewAccount(person, account, balance) {
 		if (balance < 0){
 			throw("Отрицательный баланс!");
 		}
-		account = new Account;
-		account._accountName = accountName;
-		account._person  = person;
-		account._balance = balance;
+		account.person  = person;
+		account.balance = balance;
 		var today;
-		account._lastOperation = dates.currDate(today);
-		account._isActivated = true;
+		account.lastOperation = dates.currDate(today);
+		account.isActivated = true;
 		console.log("Операция выполнена успешно!");
+		person.accounts.push(account);
+
 		return account;
    	}
 
 
    	function transferNewSumm (accountFrom, accountTo, summ){
-   	   	if (( accountFrom._balance - summ ) < 0){
+   	   	if (( accountFrom.balance - summ ) < 0){
    	   		throw("Недостаточно денег на счету!");
    	   	}
 
-   	   	if (accountFrom._isActivated == false ) {
+   	   	if (accountFrom.isActivated == false ) {
    	   		throw("Аккаунт еще не активирован!");
    	   	}
-   	   	if (accountTo._isActivated == false ) {
+   	   	if (accountTo.isActivated == false ) {
    	   		throw("Аккаунт еще не активирован!");
    	   	}
 
-   	   	accountFrom._balance = accountFrom._balance - summ;
-   	   	accountTo._balance = accountTo._balance + summ;
+   	   	accountFrom.balance = accountFrom.balance - summ;
+   	   	accountTo.balance = accountTo.balance + summ;
    	   	var today;
    	   	today = dates.currDate(today);
-   	   	accountFrom._lastOperation = today;
-   	   	accountTo._lastOperation = today;
-   	   	console.log("Операция выполнена успешно!");
+   	   	accountFrom.lastOperation = today;
+   	   	accountTo.lastOperation = today;
+   	   	console.log("Перевод денег со счета "+ accountFrom.person.name + " ("+accountFrom.accountName+
+   	   				") в размере " + summ + " на счет " + accountTo.person.name + 
+   	   				" ("+ accountTo.accountName + ") прошел успешно!");
+   	 
    }
 
    	function  getPersonAccounts(person){
-   	   	return person._accounts;
+   	   	return person.accounts;
    	}
 
    return {
